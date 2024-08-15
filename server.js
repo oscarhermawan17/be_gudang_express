@@ -14,12 +14,6 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(cors({
-  origin: 'http://localhost:5173', // Sesuaikan dengan URL frontend Anda
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Mengizinkan pengiriman cookie
-}));
-
 // Debug CORS
 app.use((req, res, next) => {
   console.log('CORS middleware executed');
