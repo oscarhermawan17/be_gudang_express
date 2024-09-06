@@ -1,0 +1,20 @@
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
+
+Product:
+npx sequelize-cli model:generate --name Product --attributes sku:string,productName:string,description:string,categoryId:integer,supplierName:string,colorId:integer,sizeType:string
+
+Size:
+npx sequelize-cli model:generate --name Size --attributes sizeType:string,sizeVariant:string
+
+Category:
+npx sequelize-cli model:generate --name Category --attributes category:string
+
+Product Variant:
+npx sequelize-cli model:generate --name ProductVariant --attributes sku:string,sizeVariant:string,stock:integer,price:integer
+
+SELECT p.sku, p."productName", c."category" 
+FROM "Products" p 
+INNER JOIN "Categories" c 
+ON p."categoryId" = c."categoryId"
+WHERE c."category" = 'Pakaian'
