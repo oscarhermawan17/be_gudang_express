@@ -23,9 +23,10 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use("/auth", authRoutes)
+// authentication
+app.use("/api/1/auth", authRoutes)
 
-app.use("/api/products", productRoutes)
+app.use("/api/1/products", productRoutes)
 
 const PORT = process.env.PORT || 3000
 

@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt")
 require("dotenv").config()
 
 const login = async (req, res) => {
-  const { email, password } = req.body
+  const { username, password } = req.body
 
-  const user = await User.findOne({ where: { email }, include: Role })
+  const user = await User.findOne({ where: { email: username }, include: Role })
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password" })
   }
@@ -18,7 +18,7 @@ const login = async (req, res) => {
   }
 
   const userDetails = await User.findOne({
-    where: { email }, // Mencari user berdasarkan email
+    where: { email: username }, // Mencari user berdasarkan email
     attributes: ["email"], // Hanya ambil kolom email dari user
     include: {
       model: Role, // Sertakan model Role
